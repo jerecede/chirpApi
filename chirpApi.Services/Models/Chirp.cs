@@ -15,7 +15,7 @@ public partial class Chirp
 
     public double? Lat { get; set; }
 
-    public double? Lgn { get; set; }
+    public double? Lng { get; set; }
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 }

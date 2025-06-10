@@ -1,4 +1,6 @@
-﻿namespace chirpApi
+﻿using Microsoft.Extensions.Configuration;
+
+namespace chirpApi
 {
     internal class AppConfig
     {

@@ -38,7 +38,7 @@ public partial class CinguettioContext : DbContext
                 .HasMaxLength(2083)
                 .HasColumnName("ext_url");
             entity.Property(e => e.Lat).HasColumnName("lat");
-            entity.Property(e => e.Lgn).HasColumnName("lgn");
+            entity.Property(e => e.Lng).HasColumnName("lng");
             entity.Property(e => e.Text)
                 .HasMaxLength(140)
                 .HasColumnName("text");

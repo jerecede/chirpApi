@@ -24,8 +24,8 @@ namespace chirpApi
 
             // dependencies injection, stiamo registrando, aggiungendo al conteiner, conviene senno dovremmo scrivere troppo codice per ogni controller, ingestibile
             builder.Services.AddScoped<IChirpsService, JereChirpsService>(); //dura dall'inizio della richiesta fino alla fine della richiesta, standard
-            builder.Services.AddSingleton<IChirpsService, JereChirpsService>(); //dura tutto il ciclo di vita dell'applicazione
-            builder.Services.AddTransient<IChirpsService, JereChirpsService>(); //dura solo per il tempo di esecuzione del metodo, ricreato ogni volta che viene chiamato
+            //builder.Services.AddSingleton<IChirpsService, JereChirpsService>(); //dura tutto il ciclo di vita dell'applicazione
+            //builder.Services.AddTransient<IChirpsService, JereChirpsService>(); //dura solo per il tempo di esecuzione del metodo, ricreato ogni volta che viene chiamato
 
             var app = builder.Build();
 

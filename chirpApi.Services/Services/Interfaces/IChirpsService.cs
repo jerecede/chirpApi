@@ -14,7 +14,7 @@ namespace chirpApi.Services.Services.Interfaces
     {
         Task<IEnumerable<ChirpViewModel>> GetAllChirps();
         Task<IEnumerable<ChirpViewModel>> GetChirpsByFilter(ChirpFilter filter);
-        Task<ChirpViewModel> GetChirpById(int id);
+        Task<ChirpViewModel?> GetChirpById(int id);
         Task<bool> UpdateChirp(int id, ChirpUpdateDTO chirp); //per gestire piu errori invece di bool fare validate
         Task<int?> CreateChirp(ChirpCreateDTO chirp); //int cosi restituisce id del nuovo chirp creato, se non riesce a creare ritorna null
         Task<int?> DeleteChirp(int id);

@@ -5,18 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace chirpApi.Services.Models.ViewModels
+namespace chirpApi.Services.Models.DTOs
 {
-    public class CommentViewModel
+    public class CommentCreateDTO
     {
-        public int Id { get; set; }
-
         public int ChirpId { get; set; }
 
         public int? ParentId { get; set; }
 
-        public string Text { get; set; }
-
-        public DateTime CreationDate { get; set; }
+        public string Text { get; set; } = null!;
     }
 }

@@ -30,9 +30,9 @@ namespace chirpApi
                 });
             });
 
-                // Add services to the container
-                builder.Services.AddDbContext<CinguettioContext>(options => // è un AddScoped mascherato
-                options.UseNpgsql(builder.Configuration.GetConnectionString("Default"))); //non c'è bisogno di AppConfig
+            // Add services to the container
+            builder.Services.AddDbContext<CinguettioContext>(options => // è un AddScoped mascherato
+            options.UseNpgsql(builder.Configuration.GetConnectionString("Default"))); //non c'è bisogno di AppConfig
 
             builder.Services.AddControllers();
 
@@ -40,6 +40,7 @@ namespace chirpApi
             builder.Services.AddScoped<IChirpsService, JereChirpsService>(); //dura dall'inizio della richiesta fino alla fine della richiesta, standard
             //builder.Services.AddSingleton<IChirpsService, JereChirpsService>(); //dura tutto il ciclo di vita dell'applicazione
             //builder.Services.AddTransient<IChirpsService, JereChirpsService>(); //dura solo per il tempo di esecuzione del metodo, ricreato ogni volta che viene chiamato
+            builder.Services.AddScoped<ICommentsService, JereCommentsService>();
 
             var app = builder.Build();
 

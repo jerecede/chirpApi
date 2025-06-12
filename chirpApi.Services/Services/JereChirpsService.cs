@@ -62,7 +62,7 @@ namespace chirpApi.Services.Services
             return result;
         }
 
-        public async Task<ChirpViewModel> GetChirpById(int id)
+        public async Task<ChirpViewModel?> GetChirpById(int id)
         {
             var chirp = await _context.Chirps.FindAsync(id);
             if(chirp == null) return null;

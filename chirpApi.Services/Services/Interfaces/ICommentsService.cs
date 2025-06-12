@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace chirpApi.Services.Services.Interfaces
 {
-    internal interface ICommentsService
+    public interface ICommentsService
     {
         Task<IEnumerable<CommentViewModel>> GetAllComments();
-        Task<IEnumerable<CommentViewModel>> GetChirpsByFilter(ChirpFilter filter);
-        Task<CommentViewModel> GetChirpById(int id);
-        Task<bool> UpdateChirp(int id, ChirpUpdateDTO chirp); //per gestire piu errori invece di bool fare validate
-        Task<int?> CreateChirp(ChirpCreateDTO chirp); //int cosi restituisce id del nuovo chirp creato, se non riesce a creare ritorna null
-        Task<bool> DeleteChirp(int id);
+        Task<IEnumerable<CommentViewModel>> GetCommentsByFilter(CommentFilter filter);
+        Task<CommentViewModel?> GetCommentById(int id);
+        Task<bool> UpdateComment(int id, CommentUpdateDTO comment);
+        Task<int?> CreateComment(CommentCreateDTO comment);
+        Task<int?> DeleteComment(int id);
     }
 }

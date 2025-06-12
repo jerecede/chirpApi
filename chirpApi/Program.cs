@@ -2,6 +2,8 @@ using chirpApi.Models;
 using chirpApi.Services.Services;
 using chirpApi.Services.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi;
+using Microsoft.OpenApi.Models;
 using Serilog;
 
 namespace chirpApi
@@ -12,12 +14,24 @@ namespace chirpApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            //Log.Logger = new LoggerConfiguration()
-            //                .ReadFrom.Configuration(builder.Configuration)
-            //                .CreateLogger();
+            Log.Logger = new LoggerConfiguration()
+                            .ReadFrom.Configuration(builder.Configuration)
+                            .CreateLogger();
 
-            // Add services to the container
-            builder.Services.AddDbContext<CinguettioContext>(options => // è un AddScoped mascherato
+            builder.Host.UseSerilog();
+
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v3", new OpenApiInfo
+                {
+                    Title = "Cinguettio API",
+                    Version = "v3",
+                    Description = "API for the Cinguettio application, a social media platform for sharing short messages."
+                });
+            });
+
+                // Add services to the container
+                builder.Services.AddDbContext<CinguettioContext>(options => // è un AddScoped mascherato
                 options.UseNpgsql(builder.Configuration.GetConnectionString("Default"))); //non c'è bisogno di AppConfig
 
             builder.Services.AddControllers();
@@ -28,6 +42,15 @@ namespace chirpApi
             //builder.Services.AddTransient<IChirpsService, JereChirpsService>(); //dura solo per il tempo di esecuzione del metodo, ricreato ogni volta che viene chiamato
 
             var app = builder.Build();
+
+            app.UseSwagger(c =>
+            {
+                c.OpenApiVersion = OpenApiSpecVersion.OpenApi3_0;
+            });
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("v3/swagger.json", "Cinguettio API V1");
+            });
 
             // Configure the HTTP request pipeline.
 
